@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Measurement App</title>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <header class="header">
+            <div class="menu-icon">☰</div>
+            <div class="logo"><img src="/assets/logo.svg" alt="logo" style="width: 40px; height:40px;"></div>
+            <div class="profile-icon">👤</div>
+        </header>
+
+        <div id="part1" class="active">
+            <div class="phone-container">
+                <p class="instruction-text">
+                    Place your phone up right against something solid about two meters away so we can see you from head to toe the app will walk you through a few simple poses while it captures your exact measurements that's it!
+                </p>
+                <div class="measurement-figure">
+                    <svg width="200" height="300" viewBox="0 0 200 300">
+                        <g stroke="#333" fill="none" stroke-width="2">
+                            <!-- Stick figure front view -->
+                            <circle cx="60" cy="40" r="15"/> <!-- Head -->
+                            <line x1="60" y1="55" x2="60" y2="120"/> <!-- Body -->
+                            <line x1="60" y1="70" x2="20" y2="100"/> <!-- Left arm -->
+                            <line x1="60" y1="70" x2="100" y2="100"/> <!-- Right arm -->
+                            <line x1="60" y1="120" x2="30" y2="180"/> <!-- Left leg -->
+                            <line x1="60" y1="120" x2="90" y2="180"/> <!-- Right leg -->
+                            
+                            <!-- Stick figure side view -->
+                            <circle cx="140" cy="40" r="15"/> <!-- Head -->
+                            <line x1="140" y1="55" x2="140" y2="120"/> <!-- Body -->
+                            <line x1="140" y1="70" x2="160" y2="100"/> <!-- Arm -->
+                            <line x1="140" y1="120" x2="120" y2="180"/> <!-- Leg -->
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <h1 class="measurement-title">Measure Online</h1>
+            
+            <ul class="requirements-list">
+                <li>1. The room is well-lit.</li>
+                <li>2. You're wearing tight-fitting clothes.</li>
+                <li>3. Your hair is tied in a bun to get started.</li>
+            </ul>
+
+            <button class="button-primary" id="startMeasurement">Start Measurement</button>
+        </div>
+
+        <div id="part2">
+            <h1 class="measurement-title">
+                Follow These Moves<br>
+                while we are scanning<br>
+                your measurements:
+            </h1>
+
+            <div class="pose-container">
+                <img src="/assets/girlgif.gif" alt="Stand Front with Wide Legs" class="pose-image">
+                <p class="pose-description">Stand Front with Wide Legs</p>
+            </div>
+
+            <div class="button-container">
+                <button class="button-primary" id="scanningCompleted">Scanning...</button>
+                <button class="button-secondary" id="cancelScanning">Cancel</button>
+            </div>
+        </div>
+
+        <div id="part3">
+            <h1 class="measurement-title">Based on your measurements we recommend "<span class="size">Size 38</span>"</h1>
+            
+            <div class="measurement-box" data-measurement="chest">
+                <span class="measurement-label">Chest</span>
+                <div class="measurement-value">
+                    <input type="number" class="value" value="46" min="0" max="999">
+                    <span class="unit">cm</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-item" data-unit="cm">cm</div>
+                    <div class="dropdown-item" data-unit="inch">inch</div>
+                </div>
+            </div>
+
+            <div class="measurement-box" data-measurement="waist">
+                <span class="measurement-label">Waist</span>
+                <div class="measurement-value">
+                    <input type="number" class="value" value="36" min="0" max="999">
+                    <span class="unit">cm</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-item" data-unit="cm">cm</div>
+                    <div class="dropdown-item" data-unit="inch">inch</div>
+                </div>
+            </div>
+
+            <div class="measurement-box" data-measurement="shoulder">
+                <span class="measurement-label">Shoulder</span>
+                <div class="measurement-value">
+                    <input type="number" class="value" value="36" min="0" max="999">
+                    <span class="unit">cm</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-item" data-unit="cm">cm</div>
+                    <div class="dropdown-item" data-unit="inch">inch</div>
+                </div>
+            </div>
+
+            <div class="measurement-box" data-measurement="hips">
+                <span class="measurement-label">Hips</span>
+                <div class="measurement-value">
+                    <input type="number" class="value" value="36" min="0" max="999">
+                    <span class="unit">cm</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-item" data-unit="cm">cm</div>
+                    <div class="dropdown-item" data-unit="inch">inch</div>
+                </div>
+            </div>
+
+            <div class="measurement-box" data-measurement="armLength">
+                <span class="measurement-label">Arm Length</span>
+                <div class="measurement-value">
+                    <input type="number" class="value" value="36" min="0" max="999">
+                    <span class="unit">cm</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-item" data-unit="cm">cm</div>
+                    <div class="dropdown-item" data-unit="inch">inch</div>
+                </div>
+            </div>
+
+            <div class="measurement-box" data-measurement="shoulderWidth">
+                <span class="measurement-label">Shoulder Width</span>
+                <div class="measurement-value">
+                    <input type="number" class="value" value="36" min="0" max="999">
+                    <span class="unit">cm</span>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="dropdown">
+                    <div class="dropdown-item" data-unit="cm">cm</div>
+                    <div class="dropdown-item" data-unit="inch">inch</div>
+                </div>
+            </div>
+
+            <button class="button-primary" id="confirmMeasurement">Confirm Measurement</button>
+            <button class="button-secondary" id="scanAgain">Scan Again For Measurement</button>
+        </div>
+    </div>
+
+    <script>
+        // Conversion functions
+        function cmToInch(cm) {
+            return (cm / 2.54).toFixed(1);
+        }
+
+        function inchToCm(inch) {
+            return (inch * 2.54).toFixed(1);
+        }
+
+        // Get all necessary elements
+        const overlay = document.querySelector('.overlay');
+        const measurementBoxes = document.querySelectorAll('.measurement-box');
+        const part1 = document.getElementById('part1');
+        const part2 = document.getElementById('part2');
+        const part3 = document.getElementById('part3');
+
+        // Close all dropdowns
+        function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            document.querySelectorAll('.chevron').forEach(chevron => {
+                chevron.classList.remove('active');
+            });
+            overlay.classList.remove('active');
+        }
+
+        // Handle measurement box clicks
+        measurementBoxes.forEach(box => {
+            const dropdown = box.querySelector('.dropdown');
+            const chevron = box.querySelector('.chevron');
+            const valueInput = box.querySelector('.value');
+            const unitSpan = box.querySelector('.unit');
+
+            // Prevent input click from triggering dropdown
+            valueInput.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+
+            // Handle box click
+            box.addEventListener('click', (e) => {
+                // Close all other dropdowns first
+                closeAllDropdowns();
+                
+                // Toggle current dropdown
+                dropdown.classList.toggle('active');
+                chevron.classList.toggle('active');
+                
+                if (dropdown.classList.contains('active')) {
+                    overlay.classList.add('active');
+                }
+            });
+
+            // Handle unit selection
+            box.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const newUnit = item.dataset.unit;
+                    const currentUnit = unitSpan.textContent;
+                    const currentValue = parseFloat(valueInput.value);
+
+                    if (currentUnit !== newUnit) {
+                        if (newUnit === 'inch') {
+                            valueInput.value = cmToInch(currentValue);
+                        } else {
+                            valueInput.value = inchToCm(currentValue);
+                        }
+                        unitSpan.textContent = newUnit;
+                    }
+
+                    closeAllDropdowns();
+                });
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        overlay.addEventListener('click', closeAllDropdowns);
+
+        // Function to switch between parts
+        function showPart(partNumber) {
+            part1.classList.remove('active');
+            part2.classList.remove('active');
+            part3.classList.remove('active');
+
+            if (partNumber === 1) {
+                part1.classList.add('active');
+            } else if (partNumber === 2) {
+                part2.classList.add('active');
+            } else if (partNumber === 3) {
+                part3.classList.add('active');
+            }
+        }
+
+        // Add click handlers for the buttons
+        document.getElementById('startMeasurement').addEventListener('click', () => {
+            showPart(2);
+            setTimeout(() => {
+                showPart(3);
+            }, 5000); // 5 seconds scanning time
+        });
+
+        document.getElementById('scanningCompleted').addEventListener('click', () => {
+            showPart(3);
+        });
+
+        document.getElementById('cancelScanning').addEventListener('click', () => {
+            showPart(1);
+        });
+
+        document.getElementById('confirmMeasurement').addEventListener('click', () => {
+            // Collect all measurements
+            const measurements = {};
+            measurementBoxes.forEach(box => {
+                const label = box.dataset.measurement;
+                const value = box.querySelector('.value').value;
+                const unit = box.querySelector('.unit').textContent;
+                measurements[label] = { value, unit };
+            });
+            console.log('Measurements:', measurements);
+        });
+
+        document.getElementById('scanAgain').addEventListener('click', () => {
+            showPart(1);
+        });
+
+        // Add click handler for menu icon
+        document.querySelector('.menu-icon').addEventListener('click', () => {
+            console.log('Menu clicked');
+            // Add your menu logic here
+        });
+
+        // Add click handler for profile icon
+        document.querySelector('.profile-icon').addEventListener('click', () => {
+            console.log('Profile clicked');
+            // Add your profile logic here
+        });
+    </script>
+</body>
+</html>
+
