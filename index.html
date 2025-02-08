@@ -12,35 +12,13 @@
         <header class="header">
             <div class="menu-icon">☰</div>
             <div class="logo"><img src="/assets/logo.svg" alt="logo" style="width: 40px; height:40px;"></div>
-            <div class="profile-icon">👤</div>
+            <div class="profile-icon"><img src="/assets/Memoji Boys 5-17.svg" alt=""></div>
         </header>
 
         <div id="part1" class="active">
-            <div class="phone-container">
-                <p class="instruction-text">
-                    Place your phone up right against something solid about two meters away so we can see you from head to toe the app will walk you through a few simple poses while it captures your exact measurements that's it!
-                </p>
                 <div class="measurement-figure">
-                    <svg width="200" height="300" viewBox="0 0 200 300">
-                        <g stroke="#333" fill="none" stroke-width="2">
-                            <!-- Stick figure front view -->
-                            <circle cx="60" cy="40" r="15"/> <!-- Head -->
-                            <line x1="60" y1="55" x2="60" y2="120"/> <!-- Body -->
-                            <line x1="60" y1="70" x2="20" y2="100"/> <!-- Left arm -->
-                            <line x1="60" y1="70" x2="100" y2="100"/> <!-- Right arm -->
-                            <line x1="60" y1="120" x2="30" y2="180"/> <!-- Left leg -->
-                            <line x1="60" y1="120" x2="90" y2="180"/> <!-- Right leg -->
-                            
-                            <!-- Stick figure side view -->
-                            <circle cx="140" cy="40" r="15"/> <!-- Head -->
-                            <line x1="140" y1="55" x2="140" y2="120"/>
-                            <line x1="140" y1="70" x2="160" y2="100"/> <!-- Arm -->
-                            <line x1="140" y1="120" x2="120" y2="180"/> <!-- Leg -->
-                        </g>
-                    </svg>
+                 <img src="/assets/image 19.svg" alt="">
                 </div>
-            </div>
-
             <h1 class="measurement-title">Measure Online</h1>
             
             <ul class="requirements-list">
@@ -49,7 +27,7 @@
                 <li>3. Your hair is tied in a bun to get started.</li>
             </ul>
 
-            <button class="button-primary" id="startMeasurement">Start Measurement</button>
+            <button class="button-primary" id="startMeasurement">Get Your Size</button>
         </div>
 
         <div id="part2">
@@ -67,6 +45,16 @@
             <div class="button-container">
                 <button class="button-primary" id="scanningCompleted">Scanning...</button>
                 <button class="button-secondary" id="cancelScanning">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Add new scanning completion modal -->
+        <div id="scanCompleteModal" class="modal">
+            <div class="modal-content">
+                <div class="success-icon">✓</div>
+                <h2>Scanning Completed!</h2>
+                <p>We have successfully scanned your size and you may view your measurement</p>
+                <button class="button-primary" id="viewSize">VIEW MY SIZE</button>
             </div>
         </div>
 
@@ -172,6 +160,8 @@
         const part1 = document.getElementById('part1');
         const part2 = document.getElementById('part2');
         const part3 = document.getElementById('part3');
+        const scanCompleteModal = document.getElementById('scanCompleteModal');
+        const viewSizeButton = document.getElementById('viewSize');
 
         // Close all dropdowns
         function closeAllDropdowns() {
@@ -253,17 +243,32 @@
         // Add click handlers for the buttons
         document.getElementById('startMeasurement').addEventListener('click', () => {
             showPart(2);
+            const scanningButton = document.getElementById('scanningCompleted');
+            scanningButton.classList.add('scanning');
+            
+            // Simulate scanning completion after 5 seconds
             setTimeout(() => {
-                showPart(3);
-            }, 5000); // 5 seconds scanning time
+                scanningButton.classList.remove('scanning');
+                scanCompleteModal.classList.add('active');
+            }, 5000);
         });
 
-        document.getElementById('scanningCompleted').addEventListener('click', () => {
+        // Add view size button handler
+        viewSizeButton.addEventListener('click', () => {
+            scanCompleteModal.classList.remove('active');
             showPart(3);
         });
 
         document.getElementById('cancelScanning').addEventListener('click', () => {
             showPart(1);
+            scanCompleteModal.classList.remove('active');
+        });
+
+        // Close modal when clicking outside
+        scanCompleteModal.addEventListener('click', (e) => {
+            if (e.target === scanCompleteModal) {
+                scanCompleteModal.classList.remove('active');
+            }
         });
 
         document.getElementById('confirmMeasurement').addEventListener('click', () => {
@@ -296,4 +301,3 @@
     </script>
 </body>
 </html>
-
